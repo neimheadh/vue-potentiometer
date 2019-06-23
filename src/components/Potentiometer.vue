@@ -1,10 +1,15 @@
 <template>
-  <div class="potentiometer--container">
-    <div class="potentiometer--button" v-on:mousedown="drag"></div>
-    <input type="number" v-bind:class="{
-      'potentiometer--input': true,
-      'potentiometer--input-hidden': !displayInput
-    }" v-model="dataValue" />
+  <div class="potentiometer">
+    <div class="potentiometer--container" :title="dataTitle">
+      <ul class="potentiometer--surround">
+          <li class="potentiometer--surround--mark" v-for="v in marks" :key="v" :title="v" :style="getMarkStyle(v)"></li>
+      </ul>
+      <div class="potentiometer--button" @mousedown="drag"></div>
+    </div>
+    <input type="number" :class="{
+        'potentiometer--input': true,
+        'potentiometer--input-hidden': !displayInput
+    }" v-model="dataValue" v-on="$listeners" />
   </div>
 </template>
 
@@ -15,11 +20,13 @@ export default {
     return {
       button: undefined,
       dataValue: 0,
+      dataTitle: undefined,
       dragged: false,
       dragY: 0,
       input: undefined,
-      minimalDeg: 0,
-      maximalDeg: 359,
+      minDeg: 0,
+      maxDeg: 359,
+      marks: [],
     }
   },
   created() {
@@ -33,24 +40,42 @@ export default {
   mounted() {
     this.button = this.$el.getElementsByClassName('potentiometer--button')[0];
     this.input = this.$el.getElementsByClassName('potentiometer--input')[0];
-    this.minimalDeg = this.lowValueGap * 360;
-    this.maximalDeg = 360 - this.lowValueGap * 360 - this.minimalDeg;
-    this.input.min = this.minimal;
-    this.input.max = this.maximal;
+    this.minDeg = this.lowValueGap * 360;
+    this.maxDeg = 360 - this.lowValueGap * 360;
+    this.input.min = this.min;
+    this.input.max = this.max;
     this.dataValue = this.value;
+    this.dataTitle = this.title;
+
+    for (let i = this.min; i <= this.max; i += this.markStep) {
+      this.marks.push(i);
+    }
+
     this.refresh();
   },
   props: {
     displayInput: { type: Boolean, default: () => false },
-    minimal: { type: Number, default: () => 0 },
-    maximal: { type: Number, default: () => 254 },
+    min: { type: Number, default: () => -100 },
+    markStep: { type: Number, default: () => 20 },
+    max: { type: Number, default: () => 100 },
+    name: { type: String, default: () => undefined },
     lowValueGap: { type: Number, default: () => 0.1 },
     value: { type: Number, default: () => 0 },
+    title: undefined,
   },
   methods: {
     drag(e) {
       this.dragged = true;
       this.dragY = e.clientY;
+    },
+    getDegree(val) {
+      return (val - this.min) * (this.maxDeg - this.minDeg) / (this.max - this.min) + this.minDeg;
+    },
+    getMarkStyle(val) {
+      return `transform: rotate(${this.getDegree(val) - 90}deg)`;
+    },
+    handleDataChange() {
+      this.$emit('input', this.dataValue);
     },
     leave() {
       if (this.dragged) {
@@ -59,26 +84,39 @@ export default {
     },
     move(e) {
       if (this.dragged) {
+        e.preventDefault();
+        e.stopPropagation();
         let v = this.dragY - e.clientY;
-        this.dataValue = v < this.minimal ? this.minimal : v > this.maximal ? this.maximal : v;
+        this.dataValue = v < this.min ? this.min : v > this.max ? this.max : v;
       }
     },
     refresh() {
-      let d = this.minimalDeg + this.dataValue * (this.maximalDeg / this.maximal);
-      this.button.style.transform = `rotate(${d}deg)`;
+      this.button.style.transform = `rotate(${this.getDegree(this.dataValue)}deg)`;
+
+      if (this.title === undefined) {
+          this.dataTitle = this.dataValue;
+      }
+
+      this.handleDataChange();
     }
   },
   watch: {
     dataValue() {
       this.refresh();
+    },
+    value() {
+      this.dataValue = this.value;   
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 .potentiometer--container {
   display: inline-block;
+  padding: 7px;
+  position: relative;
+  text-align: left;
 }
 .potentiometer--button {
   border: 1px solid darkgray;
@@ -87,21 +125,48 @@ export default {
   display: inline-block;
   min-height: 50px;
   min-width: 50px;
+  padding: 0;
   position: relative;
+
+  &:after {
+    background-color: lightgray;
+    border: 1px solid darkgray;
+    border-radius: 100%;
+    content: ' ';
+    display: inline-block;
+    margin: 35px 0 0 20px;
+    min-height: 8px;
+    min-width: 8px;
+    position: relative;
+  }
 }
-.potentiometer--button::after {
-  background-color: lightgray;
-  border: 1px solid darkgray;
-  border-radius: 100%;
-  content: ' ';
-  display: inline-block;
-  margin: 35px 0 0 20px;
-  min-height: 8px;
-  min-width: 8px;
-  position: relative;
+.potentiometer--input {
+  display: block;
 }
 .potentiometer--input-hidden {
   position: absolute;
   visibility: hidden;
+}
+.potentiometer--surround {
+  margin: 0;
+  padding: 0;
+}
+.potentiometer--surround--mark {
+  font-size: 14px;
+  line-height: 0;
+  list-style: none;
+  padding: 50% 0 0 0;
+  position: absolute;
+  height: 50%;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  &:before {
+    color: darkgray;
+    content: '_';
+    position: absolute;
+    margin-top: -5px;
+  }
 }
 </style>
