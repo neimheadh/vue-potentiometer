@@ -1,29 +1,64 @@
-# vue-potentiometer
+# JS Potentiometer written in Vue.js
 
-## Project setup
-```
-npm install
-```
+This project provide a Javascript potentiometer input written in Vue.js.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+You can find a demo [here](https://neimheadh.github.io/vue-potentiometer/)
 
-### Compiles and minifies for production
-```
-npm run build
+## Getting started
+
+Install the vue module :
+
+```console
+npm install vue-potentiometer
 ```
 
-### Run your tests
-```
-npm run test
+Add the module in your application :
+
+```js
+import Potentiometer from 'vue-potentiometer';
+
+export default {
+    components: { Potentiometer },
+    // ...
+}
 ```
 
-### Lints and fixes files
-```
-npm run lint
+And then add the potentiometer stylesheet :
+
+```css
+@import "~vue-potentiometer/dist/potentiometer.css";
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Then you can use the component in your templates (all parameters are optional,
+default values setted here, except for the false by default `display-input`) :
+
+```html
+<!-- ... -->
+<Potentiometer
+    <!-- Display potentiometer number input -->
+    dislay-input
+    <!-- Configure potentiometer min value -->
+    :min="-100"
+    <!-- Configure values the dash-marks will be placed on -->
+    :mark-step="20"
+    <!-- Configure potentiometer max value -->
+    :max="100"
+    <!-- Configure a percent on the bottom of the potentiometer which doesn't
+      have value and marks and cannot be selected -->
+    :low-value-gap="0.1"
+/>
+<!-- ... -->
+```
+
+## Alternative
+
+If you don't want to add the potentiometer stylesheet, you can also include
+the Potentiometer vue object directly. But be careful, it uses scss language :
+
+```js
+import Potentiometer from 'vue-potentiometer/src/Potentiometer.vue';
+
+// ...
+```
+
+
