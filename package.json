@@ -4,7 +4,7 @@
   "main": "dist/potentiometer.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "rm js/* & rm css/* & vue-cli-service build --no-clean --dest .",
     "lint": "vue-cli-service lint",
     "build-bundle": "vue-cli-service build --target lib --name potentiometer src/components/Potentiometer.vue"
   },
