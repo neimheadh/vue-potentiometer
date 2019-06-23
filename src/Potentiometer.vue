@@ -58,7 +58,6 @@ export default {
     min: { type: Number, default: () => -100 },
     markStep: { type: Number, default: () => 20 },
     max: { type: Number, default: () => 100 },
-    name: { type: String, default: () => undefined },
     lowValueGap: { type: Number, default: () => 0.1 },
     value: { type: Number, default: () => 0 },
     title: undefined,
