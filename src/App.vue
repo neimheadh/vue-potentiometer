@@ -11,7 +11,7 @@
         <div class="app--potentiometer--title">
           Room
         </div>
-        <Potentiometer v-model.number="room" name="room" display-input />
+        <Potentiometer v-model.number="room" name="room" />
       </div>
     </div>
 
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Potentiometer from './components/Potentiometer.vue';
+import Potentiometer from './Potentiometer.vue';
 
 export default {
   components: { Potentiometer },
