@@ -1,11 +1,7 @@
 {
   "name": "vue-potentiometer",
   "homepage": "https://neimheadh.github.io/vue-potentiometer/",
-<<<<<<< HEAD
   "version": "0.1.2",
-=======
-  "version": "0.1.1",
->>>>>>> 7d59071a3136410496b73f5205e6d8c3612b02dd
   "main": "dist/potentiometer.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
