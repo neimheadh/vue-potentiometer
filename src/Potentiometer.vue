@@ -32,10 +32,12 @@ export default {
   created() {
     window.addEventListener('mousemove', this.move);
     window.addEventListener('mouseup', this.leave);
+    window.addEventListener('selectstart', this.select);
   },
   destroyed() {
     window.removeEventListener('mousemove', this.move);
     window.removeEventListener('mouseup', this.leave);
+    window.removeEventListener('selectstart', this.select);
   },
   mounted() {
     this.button = this.$el.getElementsByClassName('potentiometer--button')[0];
@@ -97,6 +99,11 @@ export default {
       }
 
       this.handleDataChange();
+    },
+    select(e) {
+      if (this.dragged) {
+        e.preventDefault();        
+      }
     }
   },
   watch: {
@@ -104,7 +111,7 @@ export default {
       this.refresh();
     },
     value() {
-      this.dataValue = this.value;   
+      this.dataValue = this.value;
     }
   }
 }
