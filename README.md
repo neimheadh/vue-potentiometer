@@ -1,6 +1,7 @@
 # JS Potentiometer written in Vue.js
 
-This project provide a Javascript potentiometer input written in Vue.js.
+This project provide a responsive Javascript potentiometer input written in
+Vue.js.
 
 You can find a demo [here](https://neimheadh.github.io/vue-potentiometer/)
 
@@ -61,4 +62,6 @@ import Potentiometer from 'vue-potentiometer/src/Potentiometer.vue';
 // ...
 ```
 
+## Examples
 
+* [The demo](https://neimheadh.github.io/vue-potentiometer/) : [App.vue](https://github.com/neimheadh/vue-potentiometer/blob/master/src/App.vue)

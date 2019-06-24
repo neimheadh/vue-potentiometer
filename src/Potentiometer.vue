@@ -102,7 +102,7 @@ export default {
     },
     select(e) {
       if (this.dragged) {
-        e.preventDefault();        
+        e.preventDefault();
       }
     }
   },
@@ -119,8 +119,7 @@ export default {
 
 <style lang="scss">
 .potentiometer--container {
-  display: inline-block;
-  padding: 7px;
+  padding: 10%;
   position: relative;
   text-align: left;
 }
@@ -129,21 +128,20 @@ export default {
   border-radius: 100%;
   cursor: ns-resize;
   display: inline-block;
-  min-height: 50px;
-  min-width: 50px;
-  padding: 0;
+  height: 0;
+  padding: 0 0 100% 0;
   position: relative;
+  width: 100%;
 
   &:after {
     background-color: lightgray;
     border: 1px solid darkgray;
     border-radius: 100%;
     content: ' ';
-    display: inline-block;
-    margin: 35px 0 0 20px;
-    min-height: 8px;
-    min-width: 8px;
-    position: relative;
+    height: 12%;
+    margin: 80% 0 0 44%;
+    width: 12%;
+    position: absolute;
   }
 }
 .potentiometer--input {
@@ -158,7 +156,7 @@ export default {
   padding: 0;
 }
 .potentiometer--surround--mark {
-  font-size: 14px;
+  font-size: 150%;
   line-height: 0;
   list-style: none;
   padding: 50% 0 0 0;
@@ -169,10 +167,11 @@ export default {
   width: 100%;
 
   &:before {
+    border-bottom: 1px solid;
     color: darkgray;
-    content: '_';
+    content: '';
     position: absolute;
-    margin-top: -5px;
+    width: 10%;
   }
 }
 </style>

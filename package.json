@@ -1,7 +1,15 @@
 {
   "name": "vue-potentiometer",
   "homepage": "https://neimheadh.github.io/vue-potentiometer/",
-  "version": "0.1.2",
+  "version": "0.1.4",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "input",
+    "potentiometer",
+    "responsive"
+  ],
   "main": "dist/potentiometer.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",

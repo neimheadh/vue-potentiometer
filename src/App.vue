@@ -1,28 +1,38 @@
 <template>
   <div id="app">
     <div class="app--potentiometers">
-      <div class="app--potentiometer">
+      <div class="app--potentiometer app--potentiometer-volume">
         <div class="app--potentiometer--title">
           Volume
         </div>
-        <Potentiometer v-model.number="volume" name="volume" :min="0" :max="200" />
+        <Potentiometer v-model.number="volume" :min="0" :max="200" />
       </div>
-      <div class="app--potentiometer">
+      <div class="app--potentiometer app--potentiometer-room">
         <div class="app--potentiometer--title">
           Room
         </div>
-        <Potentiometer v-model.number="room" name="room" />
+        <Potentiometer v-model.number="room" />
+      </div>
+      <div class="app--potentiometer app--potentiometer-chorus">
+        <div class="app--potentiometer--title">
+          Chorus
+        </div>
+        <Potentiometer v-model.number="chorus" :min="0" :max="200" :mark-step="2" />
       </div>
     </div>
 
     <form class="app--form">
       <label>
-        Volume: 
+        Volume:
         <input v-model.number="volume" type="number" />
       </label>
       <label>
         Room:
         <input v-model.number="room" type="number" />
+      </label>
+      <label>
+        Chorus:
+        <input v-model.number="chorus" type="number" />
       </label>
     </form>
   </div>
@@ -36,6 +46,7 @@ export default {
   data() {
     return {
       room: 0,
+      chorus: 100,
       volume: 100,
     }
   }
@@ -49,6 +60,13 @@ export default {
 .app--potentiometer {
   padding: 0 10px;
   text-align: center;
+  width: 120px;
+}
+.app--potentiometer-room {
+  width: 70px;
+}
+.app--potentiometer-chorus {
+  width: 200px;
 }
 .app--potentiometers {
   display: flex;
