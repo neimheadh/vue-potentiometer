@@ -49,6 +49,10 @@ default values setted here, except for the false by default `display-input`) :
     <!-- Configure a percent on the bottom of the potentiometer which doesn't
       have value and marks and cannot be selected -->
     :low-value-gap="0.1"
+    <!-- Configure value float precision (ex: 0.1 for values like 12.3) -->
+    :precision="1"
+    <!-- Potentiometer sensibility -->
+    :sensibility="10"
 />
 <!-- ... -->
 ```
