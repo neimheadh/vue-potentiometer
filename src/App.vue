@@ -17,7 +17,7 @@
         <div class="app--potentiometer--title">
           Chorus
         </div>
-        <Potentiometer v-model.number="chorus" :min="0" :max="200" :mark-step="2" />
+        <Potentiometer v-model.number="chorus" :min="0" :max="200" :mark-step="2" :precision="0.1" />
       </div>
     </div>
 

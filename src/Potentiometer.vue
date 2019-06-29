@@ -61,6 +61,8 @@ export default {
     markStep: { type: Number, default: () => 20 },
     max: { type: Number, default: () => 100 },
     lowValueGap: { type: Number, default: () => 0.1 },
+    precision: { type: Number, default: () => 1 },
+    sensibility: { type: Number, default: () => 10 },
     value: { type: Number, default: () => 0 },
     title: undefined,
   },
@@ -84,11 +86,16 @@ export default {
       }
     },
     move(e) {
+      const p = 1.0 / this.precision;
       if (this.dragged) {
         e.preventDefault();
         e.stopPropagation();
-        let v = this.dragY - e.clientY;
-        this.dataValue = v < this.min ? this.min : v > this.max ? this.max : v;
+        const v = this.dataValue + (this.dragY - e.clientY) / this.sensibility;
+        this.dataValue = v < this.min 
+            ? this.min 
+            : v > this.max 
+            ? this.max 
+            : Math.round(v * p) / p;
       }
     },
     refresh() {
