@@ -1,11 +1,13 @@
-# JS Potentiometer written in Vue.js
+JS Potentiometer written using Vue.js
+=====================================
 
 This project provide a responsive Javascript potentiometer input written in
 Vue.js.
 
-You can find a demo [here](https://neimheadh.github.io/vue-potentiometer/)
+You can find a demo [here](https://neimheadh.github.io/vue-potentiometer/).
 
-## Getting started
+Getting started
+---------------
 
 Install the vue module :
 
@@ -47,21 +49,28 @@ default values setted here, except for the false by default `display-input`) :
     <!-- Configure a percent on the bottom of the potentiometer which doesn't
       have value and marks and cannot be selected -->
     :low-value-gap="0.1"
+    <!-- Configure value float precision (ex: 0.1 for values like 12.3) -->
+    :precision="1"
+    <!-- Potentiometer sensibility -->
+    :sensibility="10"
 />
 <!-- ... -->
 ```
 
-## Alternative
+Alternative
+-----------
 
 If you don't want to add the potentiometer stylesheet, you can also include
-the Potentiometer vue object directly. But be careful, it uses scss language :
+the Potentiometer vue object directly. But be careful, it uses scss language,
+you should install `node-sass` and `sass-loader` npm packages :
 
 ```js
-import Potentiometer from 'vue-potentiometer/src/Potentiometer.vue';
+import Potentiometer from 'vue-potentiometer/Potentiometer';
 
 // ...
 ```
 
-## Examples
+Examples
+--------
 
 * [The demo](https://neimheadh.github.io/vue-potentiometer/) : [App.vue](https://github.com/neimheadh/vue-potentiometer/blob/master/src/App.vue)

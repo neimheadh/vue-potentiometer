@@ -1,7 +1,7 @@
 {
   "name": "vue-potentiometer",
   "homepage": "https://neimheadh.github.io/vue-potentiometer/",
-  "version": "0.1.4",
+  "version": "0.1.9",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -13,9 +13,9 @@
   "main": "dist/potentiometer.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "rm js/* & rm css/* & vue-cli-service build --no-clean --dest .",
+    "build": "rm -f js/* & rm -f css/* & vue-cli-service build --no-clean --dest .",
     "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name potentiometer src/components/Potentiometer.vue"
+    "build-bundle": "vue-cli-service build --target lib --name potentiometer src/Potentiometer.vue"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,6 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "node-sass": "^4.12.0",
-    "sass-loader": "^7.1.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -33,7 +31,9 @@
     "@vue/cli-service": "^3.1.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
@@ -59,11 +59,7 @@
     "> 1%",
     "last 2 versions"
   ],
-  "files": [
-    "dist/*",
-    "src/Potentiometer.vue"
-  ],
   "browser": {
-    "./sfc": "src/Potentiometer.vue"
+    "./Potentiometer": "./src/Potentiometer.vue"
   }
 }
