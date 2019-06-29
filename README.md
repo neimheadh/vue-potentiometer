@@ -54,10 +54,11 @@ default values setted here, except for the false by default `display-input`) :
 ## Alternative
 
 If you don't want to add the potentiometer stylesheet, you can also include
-the Potentiometer vue object directly. But be careful, it uses scss language :
+the Potentiometer vue object directly. But be careful, it uses scss language,
+you should install `node-sass` and `sass-loader` npm packages :
 
 ```js
-import Potentiometer from 'vue-potentiometer/src/Potentiometer.vue';
+import Potentiometer from 'vue-potentiometer/Potentiometer';
 
 // ...
 ```
