@@ -1,7 +1,7 @@
 {
   "name": "vue-potentiometer",
   "homepage": "https://neimheadh.github.io/vue-potentiometer/",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -58,10 +58,6 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ],
-  "files": [
-    "dist/*",
-    "src/Potentiometer.vue"
   ],
   "browser": {
     "./sfc": "src/Potentiometer.vue"

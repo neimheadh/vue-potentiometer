@@ -1,0 +1,11 @@
+/node_modules
+/public
+/src/main.js
+/src/App.vue
+/css
+/js
+/index.html
+/.gitignore
+/babel.config.js
+/package-lock.json
+/vue.config.js
