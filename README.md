@@ -1,4 +1,4 @@
-# JS Potentiometer written in Vue.js
+# JS Potentiometer written using Vue.js
 
 This project provide a responsive Javascript potentiometer input written in
 Vue.js.
