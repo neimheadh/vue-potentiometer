@@ -22,7 +22,8 @@ export default {
       dataValue: 0,
       dataTitle: undefined,
       dragged: false,
-      dragY: 0,
+      dragX: -1,
+      dragY: -1,
       input: undefined,
       minDeg: 0,
       maxDeg: 359,
@@ -56,6 +57,8 @@ export default {
     this.refresh();
   },
   props: {
+    disableAxisX: { type: Boolean, default: () => false },
+    disableAxisY: { type: Boolean, default: () => false },
     displayInput: { type: Boolean, default: () => false },
     min: { type: Number, default: () => -100 },
     markStep: { type: Number, default: () => 20 },
@@ -69,7 +72,7 @@ export default {
   methods: {
     drag(e) {
       this.dragged = true;
-      this.dragY = e.clientY;
+      this.setDragPosition(e);
     },
     getDegree(val) {
       return (val - this.min) * (this.maxDeg - this.minDeg) / (this.max - this.min) + this.minDeg;
@@ -91,10 +94,18 @@ export default {
         e.stopPropagation();
 
         const p = 1.0 / this.precision;
-        const v = this.dataValue + (this.dragY - e.clientY) / this.sensibility;
+        let v = this.dataValue;
+
+        if (!this.disableAxisY) {
+          v += (this.dragY - e.clientY) / this.sensibility;
+        }
+
+        if (!this.disableAxisX) {
+          v += (this.dragX - e.clientX) / this.sensibility;
+        }
 
         if (v > this.max || v < this.min) {
-          this.dragY = e.clientY;
+          this.setDragPosition(e);
           this.dataValue = v > this.max ? this.max : this.min;
         } else {
           this.dataValue = Math.round(v * p) / p;
@@ -114,6 +125,10 @@ export default {
       if (this.dragged) {
         e.preventDefault();
       }
+    },
+    setDragPosition(e) {
+      this.dragX = e.clientX;
+      this.dragY = e.clientY;
     }
   },
   watch: {
