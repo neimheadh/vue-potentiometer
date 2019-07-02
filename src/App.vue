@@ -32,7 +32,7 @@
       </label>
       <label>
         Chorus:
-        <input v-model.number="chorus" type="number" />
+        <input v-model.number="chorus" type="number" step="0.1" />
       </label>
     </form>
   </div>
