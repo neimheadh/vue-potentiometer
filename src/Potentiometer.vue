@@ -86,16 +86,19 @@ export default {
       }
     },
     move(e) {
-      const p = 1.0 / this.precision;
       if (this.dragged) {
         e.preventDefault();
         e.stopPropagation();
+
+        const p = 1.0 / this.precision;
         const v = this.dataValue + (this.dragY - e.clientY) / this.sensibility;
-        this.dataValue = v < this.min 
-            ? this.min 
-            : v > this.max 
-            ? this.max 
-            : Math.round(v * p) / p;
+
+        if (v > this.max || v < this.min) {
+          this.dragY = e.clientY;
+          this.dataValue = v > this.max ? this.max : this.min;
+        } else {
+          this.dataValue = Math.round(v * p) / p;
+        }
       }
     },
     refresh() {
