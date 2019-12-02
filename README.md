@@ -1,4 +1,4 @@
-JS Potentiometer written using Vue.js
+JS potentiometer written using Vue.js
 =====================================
 
 This project provide a responsive Javascript potentiometer input written in
@@ -18,10 +18,10 @@ npm install vue-potentiometer
 Add the module in your application :
 
 ```js
-import Potentiometer from 'vue-potentiometer';
+import potentiometer from 'vue-potentiometer';
 
 export default {
-    components: { Potentiometer },
+    components: { potentiometer },
     // ...
 }
 ```
@@ -32,28 +32,36 @@ And then add the potentiometer stylesheet :
 @import "~vue-potentiometer/dist/potentiometer.css";
 ```
 
-Then you can use the component in your templates (all parameters are optional,
-default values setted here, except for the false by default `display-input`) :
+Parameters
+----------
+
+*  **disable-axis-x**: Disable mouse X axis value control.
+*  **disable-axis-y**: Disable mouse Y axis value control.
+*  **display-input**: Display potentiometer number input.
+*  **min**: Configure potentiometer min value.
+*  **mark-step**: Configure values the dash-marks will be placed on.
+*  **max**: Configure potentiometer max value.
+*  **low-value-gap**: Configure a percent on the bottom of the
+     potentiometer which doesn't have value and marks and cannot be selected.
+*  **precision**: Configure value float precision (ex: 0.1 for values like
+    12.3).
+*  **sensibility**: potentiometer sensibility.
+
+All parameters are optional, default values setted here, except for the false
+by default `display-input`, `disable-axis-x` and `disable-axis-y` :
 
 ```html
 <!-- ... -->
 <Potentiometer
-    <!-- Display potentiometer number input -->
-    dislay-input
-    <!-- Configure potentiometer min value -->
+    disable-axis-x
+    disable-axis-y
+    display-input
     :min="-100"
-    <!-- Configure values the dash-marks will be placed on -->
     :mark-step="20"
-    <!-- Configure potentiometer max value -->
     :max="100"
-    <!-- Configure a percent on the bottom of the potentiometer which doesn't
-      have value and marks and cannot be selected -->
     :low-value-gap="0.1"
-    <!-- Configure value float precision (ex: 0.1 for values like 12.3) -->
     :precision="1"
-    <!-- Potentiometer sensibility -->
-    :sensibility="10"
-/>
+    :sensibility="10" />
 <!-- ... -->
 ```
 
@@ -61,11 +69,11 @@ Alternative
 -----------
 
 If you don't want to add the potentiometer stylesheet, you can also include
-the Potentiometer vue object directly. But be careful, it uses scss language,
+the potentiometer vue object directly. But be careful, it uses scss language,
 you should install `node-sass` and `sass-loader` npm packages :
 
 ```js
-import Potentiometer from 'vue-potentiometer/Potentiometer';
+import potentiometer from 'vue-potentiometer/potentiometer';
 
 // ...
 ```
@@ -73,4 +81,5 @@ import Potentiometer from 'vue-potentiometer/Potentiometer';
 Examples
 --------
 
-* [The demo](https://neimheadh.github.io/vue-potentiometer/) : [App.vue](https://github.com/neimheadh/vue-potentiometer/blob/master/src/App.vue)
+*  [The demo](https://neimheadh.github.io/vue-potentiometer/) :
+     [App.vue](https://github.com/neimheadh/vue-potentiometer/blob/master/src/App.vue)
