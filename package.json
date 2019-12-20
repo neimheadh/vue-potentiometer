@@ -1,7 +1,7 @@
 {
   "name": "vue-potentiometer",
   "homepage": "https://neimheadh.github.io/vue-potentiometer/",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "keywords": [
     "vue",
@@ -22,15 +22,16 @@
     "url": "git+https://github.com/neimheadh/vue-potentiometer.git"
   },
   "dependencies": {
-    "core-js": "^3.4.5",
+    "core-js": "^3.6.0",
     "lodash": "^4.17.14",
     "lodash.defaultsdeep": "^4.6.1",
-    "vue": "^2.6.10"
+    "serialize-javascript": ">=2.1.1",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.1.1",
-    "@vue/cli-plugin-eslint": "4.1.1",
-    "@vue/cli-service": "4.1.1",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
     "babel-eslint": "10.0.2",
     "eslint": "6.7.2",
     "eslint-plugin-vue": "6.0.1",
